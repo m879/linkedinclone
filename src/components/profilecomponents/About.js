@@ -122,20 +122,78 @@ function TabPanel(props) {
 
 export default function About() {
 
-    const classes = useStyles();
-    
+    const classes = useStyles();    
     // FOR TAB WORK ie ABOUT ME
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
 
+    // FOR DIALOG OPEN
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+
   return (
     <div>
-           <div style={{padding:'10px 20px 0px 20px',background:'lavender'}}>
-               <Typography  variant="h6" component="h5" style={{padding:'10px',height:'30px'}}>About</Typography>
+
+        <Dialog  fullScreen={fullScreen}  open={open}  onClose={handleClose}  aria-labelledby="responsive-dialog-title">
+            <div style={{display:"flex"}}>
+                <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+              <div style={{marginLeft:'auto',marginTop:'10px',marginRight:'5%'}}>
+                <IconButton onClick={handleClose}  edge="end"><HighlightOffIcon/></IconButton>
+              </div>
             </div>
-            <Divider />
+          <DialogContent dividers>
+              <DialogContentText>
+                Let Google help apps determine location. This means sending anonymous location data to
+                Google, even when no apps are running.
+              </DialogContentText>
+              <Card  variant="outlined" style={{paddingBottom:'30px',width:'100%'}}>
+                  <CardActionArea >
+                    <CardMedia     style={{height:'150px'}}
+                      image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
+                    />
+                  </CardActionArea>
+                  <div id="networkimg">
+                      <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
+                      style={{height:'100px',width:'100px',marginTop:'-50px'}}/>
+                  </div>
+                  <CardContent style={{textAlign:'center'}}>
+                    <Typography gutterBottom variant="h6" component="h5">Meraj Ahmed</Typography>
+                    <Typography variant="body2" color="textMuted" component="p">Computer Engineering</Typography>
+                  </CardContent>
+                  <CardActions style={{textAlign:'center'}}>
+                    <Button>Click me</Button>
+                  </CardActions>
+              </Card>
+              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
+              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
+          </DialogContent>
+          <DialogActions>
+              <Button onClick={handleClose}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Save</Button>
+          </DialogActions>
+      </Dialog>
+
+
+
+
+        <div style={{display:'flex',padding:'10px 20px 0px 20px',background:'lavender'}}>
+            <Typography style={{padding:'10px',height:'30px'}} variant="h6" component="h5">About</Typography>
+            <div style={{marginLeft:'auto'}}>
+                <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}><CreateIcon/></IconButton>
+            </div>
+        </div>
+        <Divider />
 
             <div className={classes.roottab}>
                 <Tabs   orientation="vertical"   variant="scrollable"
@@ -178,7 +236,7 @@ export default function About() {
                             <ListItemAvatar><Avatar> {/* <BeachAccessIcon /> */}  </Avatar></ListItemAvatar>
                           <ListItemText 
                           primary="Primary Education" 
-                          secondary="Midas School of Learning" />
+                          secondary={<a href="#">Midas school of Learning</a>} />
                         </ListItem>
                     </List>
                 </TabPanel>
@@ -205,7 +263,7 @@ export default function About() {
                         <ListItem><ListItemAvatar>  <Avatar>    {/* <ImageIcon /> */}  </Avatar></ListItemAvatar>
                           <ListItemText 
                           primary="Website" 
-                          secondary="Jan 9, 2014" />
+                          secondary={<a href="https://m879.github.io/merajahmed.github.io/">merajahmed.live</a>} />
                         </ListItem>
                         <ListItem><ListItemAvatar>  <Avatar>    {/* <WorkIcon /> */}  </Avatar>
                           </ListItemAvatar>

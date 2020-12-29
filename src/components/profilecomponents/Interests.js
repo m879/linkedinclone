@@ -54,6 +54,7 @@ import { useTheme } from '@material-ui/core/styles';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 
+import Collapse from '@material-ui/core/Collapse';
 
 
 let recent=[
@@ -77,6 +78,13 @@ let recent=[
 
 
 export default function Interests() {
+
+//for dialog work
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChangeinput = () => {
+    setChecked((prev) => !prev);
+  };
 
   return (
       <div>
@@ -136,10 +144,41 @@ export default function Interests() {
                         ))
                   }
                 </Grid>
+
+
+
+              <Collapse in={checked}>
+              {
+                      recent.map((row) => (
+                          <a button href="#" style={{textDecoration:'none',width:'100%',paddingTop:'50px' }}>
+                          <Card style={{width:'90%',marginTop:'30px',marginLeft:'3%'}}>
+                              <CardHeader
+                                avatar={
+                                  <Avatar 
+                                  src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
+                                  ></Avatar>
+                                }
+                                action={
+                                  <IconButton aria-label="settings">
+                                      {/* <MoreVertIcon /> */}
+                                      </IconButton>
+                                }
+                                title={row.notifications}
+                                subheader="September 14, 2016"
+                              />
+                          </Card>
+                          </a>
+                        ))
+                  }
+              </Collapse>
+
+
+
+
               </Grid>
               <div style={{textAlign:'center',padding:"20px"}}>
                  <Divider style={{marginBottom:'20px'}}/>
-                  <Button variant="outlined" color="primary" 
+                  <Button variant="outlined" color="primary" onClick={handleChangeinput}
                    startIcon={<ExpandMoreIcon />}>See more</Button>
               </div>
       </div>

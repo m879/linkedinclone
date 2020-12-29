@@ -247,13 +247,6 @@ const hashtags=["#intership world","#scholarship","#Job finder"]
 const drawer = (
     <div>
       <div className={classes.toolbar} />
-      {/* <NavLink to="/" style={{textDecoration:'none'}}> */}
-          {/* <ListItem button> */}
-              {/* <ListItemIcon><DashboardIcon/></ListItemIcon> */}
-             {/* <ListItemText id="font1" primary='Dashboard' /> */}
-          {/* </ListItem> */}
-        {/* </NavLink> */}
-
         <IconButton id="sidebarclose"
             color="inherit"
             aria-label="open drawer"
@@ -281,7 +274,9 @@ const drawer = (
           <NavLink to="/profile" style={{textDecoration:'none'}}>
               <Button  color="primary" size="small">View Profile</Button>
           </NavLink>
+          <NavLink to="/settings" style={{textDecoration:'none'}}>
               <Button  color="primary" size="small">Settings</Button>
+          </NavLink>
         </CardActions>
     </Card>
 
