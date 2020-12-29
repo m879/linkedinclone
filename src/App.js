@@ -22,6 +22,7 @@ class App extends Component {
         <div>
           <Navigation />
             <Switch>
+             <Route path="/linkedinclone/" component={Home} exact/>
              <Route path="/" component={Home} exact/>
              <Route path="/jobs" component={Jobs}/>
              <Route path="/network" component={Network}/>
