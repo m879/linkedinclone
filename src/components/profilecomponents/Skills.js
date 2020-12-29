@@ -54,6 +54,7 @@ import { useTheme } from '@material-ui/core/styles';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import Collapse from '@material-ui/core/Collapse';
+import AddIcon from '@material-ui/icons/Add';
 
 
 
@@ -91,36 +92,27 @@ export default function Skills() {
 
           <Dialog  fullScreen={fullScreen}  open={open}  onClose={handleClose}  aria-labelledby="responsive-dialog-title">
               <div style={{display:"flex"}}>
-                  <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                  <DialogTitle id="responsive-dialog-title">{"Add new skills"}</DialogTitle>
                 <div style={{marginLeft:'auto',marginTop:'10px',marginRight:'5%'}}>
                   <IconButton onClick={handleClose}  edge="end"><HighlightOffIcon/></IconButton>
                 </div>
               </div>
               <DialogContent dividers>
                   <DialogContentText>
-                    Let Google help apps determine location. This means sending anonymous location data to
-                    Google, even when no apps are running.
+                    Add your skills to know other about your knowledge.
                   </DialogContentText>
-                  <Card  variant="outlined" style={{paddingBottom:'30px',width:'100%'}}>
-                      <CardActionArea >
-                        <CardMedia     style={{height:'150px'}}
-                          image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-                        />
-                      </CardActionArea>
-                      <div id="networkimg">
-                          <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
-                          style={{height:'100px',width:'100px',marginTop:'-50px'}}/>
-                      </div>
-                      <CardContent style={{textAlign:'center'}}>
-                        <Typography gutterBottom variant="h6" component="h5">Meraj Ahmed</Typography>
-                        <Typography variant="body2" color="textMuted" component="p">Computer Engineering</Typography>
-                      </CardContent>
-                      <CardActions style={{textAlign:'center'}}>
-                        <Button>Click me</Button>
-                      </CardActions>
-                  </Card>
-                  <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-                  <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
+                  <TextField   variant="outlined"  margin="dense"  id="name"  label="Skills(ex: Machine Learning)"  type="text"  fullWidth/>
+                  <DialogContentText style={{marginTop:'30px'}}>
+                    Skills suggested based on your profile
+                  </DialogContentText>
+                  <Grid>
+                  {
+                   jobsuggested.map((row) => (
+                     <Chip size="large" color="secondary"  style={{margin:'5px'}} variant="outlined" label={row} />
+                   ))
+                  }   
+                  </Grid>
+                
               </DialogContent>
               <DialogActions>
                   <Button onClick={handleClose}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Save</Button>
@@ -134,7 +126,7 @@ export default function Skills() {
             <div style={{display:'flex',padding:'10px 20px 0px 20px',background:'lavender'}}>
                <Typography style={{padding:'10px',height:'30px'}} variant="h6" component="h5">Skills & Endorsements</Typography>
                <div style={{marginLeft:'auto'}}>
-               <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}><CreateIcon/></IconButton>
+               <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}><AddIcon/></IconButton>
                 </div>
             </div>
             <Divider />
@@ -144,7 +136,8 @@ export default function Skills() {
                 </div>
                 {
                    jobsuggested.map((row) => (
-                     <Chip size="large" color="secondary" onDelete={handleDelete} style={{margin:'5px'}} variant="outlined" label={row} />
+                     <Chip size="large" color="secondary"  style={{margin:'5px'}} 
+                     variant="outlined" label={row} />
                    ))
                 }
                 <Collapse in={checked}>

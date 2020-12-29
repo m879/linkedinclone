@@ -61,6 +61,10 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
 let recent=[
     {
        id:"1",
@@ -98,6 +102,15 @@ const Profile= () => {
     };
 
 
+    // FOR MENU
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClosemenu = () => {
+      setAnchorEl(null);
+    };
+
     return (
        <div id="home">
            <Grid container>
@@ -122,15 +135,75 @@ const Profile= () => {
                              <Button variant="outlined"  color="secondary" size="small"
                               endIcon={<ExpandMoreIcon/>}>Connection</Button>
                           </NavLink>
-                          {/* <NavLink to="/editprofile" style={{textDecoration:'none'}}> */}
                             <Button variant="outlined"  color="secondary" size="small"
-                              endIcon={<ExpandMoreIcon/>}>More</Button>
-                          {/* </NavLink> */}
-                          
-                             
+                            aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}
+                              endIcon={<ExpandMoreIcon/>}>More</Button>                          
                         </CardActions>
                     </Card>
                     </Paper>
+
+
+
+                    <Menu   id="simple-menu"   anchorEl={anchorEl}   keepMounted   open={Boolean(anchorEl)}   onClose={handleClosemenu} >
+                      <MenuItem onClick={handleClickOpen}>Edit profile</MenuItem>
+                      <MenuItem onClick={handleClosemenu}>Share profile</MenuItem>
+                      <MenuItem onClick={handleClosemenu}>Add profile section</MenuItem>
+                    </Menu>
+
+
+
+                    <Dialog  fullScreen={fullScreen}  open={open}  onClose={handleClose}  aria-labelledby="responsive-dialog-title">
+                        <div style={{display:"flex"}}>
+                            <DialogTitle id="responsive-dialog-title">{"Edit profile page"}</DialogTitle>
+                          <div style={{marginLeft:'auto',marginTop:'10px',marginRight:'5%'}}>
+                            <IconButton onClick={handleClose}  edge="end"><HighlightOffIcon/></IconButton>
+                          </div>
+                        </div>
+                      <DialogContent dividers>
+                        <DialogContentText>
+                          {/* Let Google help apps determine location. This means sending anonymous location data to */}
+                          {/* Google, even when no apps are running. */}
+                        </DialogContentText>
+                        <Card  variant="outlined" style={{paddingBottom:'30px',width:'100%'}}>
+                            <CardActionArea >
+                              <CardMedia     style={{height:'150px'}}
+                                image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
+                              />
+                            </CardActionArea>
+                            <div id="networkimg">
+                                <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
+                                style={{height:'100px',width:'100px',marginTop:'-50px'}}/>
+                            </div>
+                            <CardContent style={{textAlign:'center'}}>
+                              <Typography gutterBottom variant="h6" component="h5">Meraj Ahmed</Typography>
+                              <Typography variant="body2" color="textMuted" component="p">Computer Engineering</Typography>
+                            </CardContent>
+                            <CardActions style={{textAlign:'center'}}>
+                              <Button color="primary">Upload profile image</Button>
+                              <Button color="primary">Upload preview image</Button>
+                            </CardActions>
+                        </Card>
+                        <Grid container>
+                            <Grid lg={6} xs={6}>
+                                <TextField  margin="dense"  id="name"  label="First name*"  type="text"  style={{width:'90%'}}/>
+                            </Grid>
+                            <Grid lg={6} xs={6}>
+                                  <TextField  margin="dense"  id="name"  label="Last name*"  type="text"  style={{width:'90%'}}/>
+                            </Grid>
+                        </Grid>
+                        <TextField   margin="dense"  id="name"  label="Headlines"  type="text"  fullWidth/>
+                        <TextField   margin="dense"  id="name"  label="Country/Region"  type="text"  fullWidth/>
+                        <TextField   margin="dense"  id="name"  label="Location in the Country/Region"  type="text"  fullWidth/>
+                        <TextField   margin="dense"  id="name"  label="Contact info"  type="text"  fullWidth/>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleClose}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Save</Button>
+                      </DialogActions>
+                    </Dialog>
+
+
+
+
 
                     <Paper elevation={3} style={{margin:'30px 10px 10px 10px'}} >
                       <Profilestrength/>
@@ -163,59 +236,15 @@ const Profile= () => {
 
                <Grid lg={4} xs={12}>
 
-                    <Paper elevation={3} style={{margin:'10px'}} >
-                        <div style={{padding:"10px",textAlign:'center'}}>
-
-                        <Button  color="primary" onClick={handleClickOpen}>Edit Profile</Button>
-                          <Dialog  fullScreen={fullScreen}  open={open}  onClose={handleClose}  aria-labelledby="responsive-dialog-title">
-
-                              <div style={{display:"flex"}}>
-                                  <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
-                                <div style={{marginLeft:'auto',marginTop:'10px',marginRight:'5%'}}>
-                                  {/* <Button onClick={handleClose} style={{borderRadius:'20px'}} variant="contained" color="primary">Cancel</Button> */}
-                                  <IconButton onClick={handleClose}  edge="end"><HighlightOffIcon/></IconButton>
-                                </div>
-                              </div>
-                            <DialogContent dividers>
-                              <DialogContentText>
-                                Let Google help apps determine location. This means sending anonymous location data to
-                                Google, even when no apps are running.
-                              </DialogContentText>
-                              <Card  variant="outlined" style={{paddingBottom:'30px',width:'100%'}}>
-                                  <CardActionArea >
-                                    <CardMedia     style={{height:'150px'}}
-                                      image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-                                    />
-                                  </CardActionArea>
-                                  <div id="networkimg">
-                                      <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
-                                      style={{height:'100px',width:'100px',marginTop:'-50px'}}/>
-                                  </div>
-                                  <CardContent style={{textAlign:'center'}}>
-                                    <Typography gutterBottom variant="h6" component="h5">Meraj Ahmed</Typography>
-                                    <Typography variant="body2" color="textMuted" component="p">Computer Engineering</Typography>
-                                  </CardContent>
-                                  <CardActions style={{textAlign:'center'}}>
-                                    <Button>Click me</Button>
-                                  </CardActions>
-                              </Card>
-                              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-                              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-                              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-                              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-                              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-                              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button onClick={handleClose}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Save</Button>
-                            </DialogActions>
-                          </Dialog>
-                        </div> 
-                        <Divider/>
-                        <div style={{padding:"10px",textAlign:'center'}}>
-                              <Button  color="primary">Add profile in other languages</Button>
-                        </div> 
-                    </Paper>
+                    {/* <Paper elevation={3} style={{margin:'10px'}} > */}
+                        {/* <div style={{padding:"10px",textAlign:'center'}}> */}
+                        {/* <Button  color="primary" onClick={handleClickOpen}>Edit Profile</Button> */}
+                        {/* </div>  */}
+                        {/* <Divider/> */}
+                        {/* <div style={{padding:"10px",textAlign:'center'}}> */}
+                              {/* <Button  color="primary">Add profile in other languages</Button> */}
+                        {/* </div>  */}
+                    {/* </Paper> */}
 
                    <Personsuggested/>
                   

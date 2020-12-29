@@ -147,11 +147,13 @@ export default function Interests() {
 
 
 
-              <Collapse in={checked}>
-              {
+            <Collapse in={checked} style={{width:'100%'}}>
+              <Grid container>
+                <Grid lg={6} xs={6} style={{textAlign:"center"}}>
+                  {
                       recent.map((row) => (
-                          <a button href="#" style={{textDecoration:'none',width:'100%',paddingTop:'50px' }}>
-                          <Card style={{width:'90%',marginTop:'30px',marginLeft:'3%'}}>
+                          <a href="#" style={{textDecoration:'none',width:'100%' }}>
+                          <Card style={{width:'90%',marginTop:'30px',marginLeft:'5%'}}>
                               <CardHeader
                                 avatar={
                                   <Avatar 
@@ -168,9 +170,37 @@ export default function Interests() {
                               />
                           </Card>
                           </a>
+                         
                         ))
                   }
-              </Collapse>
+                </Grid>
+
+                <Grid lg={6} xs={6} style={{textAlign:"center"}}>
+                    {
+                        recent.map((row) => (
+                            <a button href="#" style={{textDecoration:'none',width:'100%',paddingTop:'50px' }}>
+                            <Card style={{width:'90%',marginTop:'30px',marginLeft:'3%'}}>
+                                <CardHeader
+                                  avatar={
+                                    <Avatar 
+                                    src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
+                                    ></Avatar>
+                                  }
+                                  action={
+                                    <IconButton aria-label="settings">
+                                        {/* <MoreVertIcon /> */}
+                                        </IconButton>
+                                  }
+                                  title={row.notifications}
+                                  subheader="September 14, 2016"
+                                />
+                            </Card>
+                            </a>
+                          ))
+                    }
+                </Grid>
+              </Grid>
+            </Collapse>
 
 
 

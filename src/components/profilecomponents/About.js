@@ -54,7 +54,16 @@ import { useTheme } from '@material-ui/core/styles';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 
+import AddIcon from '@material-ui/icons/Add';
 
+import Collapse from '@material-ui/core/Collapse';
+
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import WorkIcon from '@material-ui/icons/Work';
+import ContactsIcon from '@material-ui/icons/Contacts';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import LanguageIcon from '@material-ui/icons/Language';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -141,6 +150,30 @@ export default function About() {
     const handleClose = () => {
       setOpen(false);
     };
+          
+    // FOR COLLAPSE
+    const [checkedoverview, setCheckedoverview] = React.useState(false);
+    const handleChangeinputoverview = () => {
+      setCheckedoverview((prev) => !prev);
+    };      
+    // FOR COLLAPSE
+    const [checkededucation, setCheckededucation] = React.useState(false);
+    const handleChangeinputeducation = () => {
+      setCheckededucation((prev) => !prev);
+    };  
+    // FOR COLLAPSE
+    const [checkedwork, setCheckedwork] = React.useState(false);
+    const handleChangeinputwork = () => {
+      setCheckedwork((prev) => !prev);
+    };  
+    
+    // FOR COLLAPSE
+    const [checkedcontact, setCheckedcontact] = React.useState(false);
+    const handleChangeinputcontact = () => {
+      setCheckedcontact((prev) => !prev);
+    };
+   
+
 
 
   return (
@@ -148,36 +181,99 @@ export default function About() {
 
         <Dialog  fullScreen={fullScreen}  open={open}  onClose={handleClose}  aria-labelledby="responsive-dialog-title">
             <div style={{display:"flex"}}>
-                <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                <DialogTitle id="responsive-dialog-title">{"Edit about"}</DialogTitle>
               <div style={{marginLeft:'auto',marginTop:'10px',marginRight:'5%'}}>
                 <IconButton onClick={handleClose}  edge="end"><HighlightOffIcon/></IconButton>
               </div>
             </div>
           <DialogContent dividers>
-              <DialogContentText>
-                Let Google help apps determine location. This means sending anonymous location data to
-                Google, even when no apps are running.
-              </DialogContentText>
-              <Card  variant="outlined" style={{paddingBottom:'30px',width:'100%'}}>
-                  <CardActionArea >
-                    <CardMedia     style={{height:'150px'}}
-                      image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-                    />
-                  </CardActionArea>
-                  <div id="networkimg">
-                      <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
-                      style={{height:'100px',width:'100px',marginTop:'-50px'}}/>
-                  </div>
-                  <CardContent style={{textAlign:'center'}}>
-                    <Typography gutterBottom variant="h6" component="h5">Meraj Ahmed</Typography>
-                    <Typography variant="body2" color="textMuted" component="p">Computer Engineering</Typography>
-                  </CardContent>
-                  <CardActions style={{textAlign:'center'}}>
-                    <Button>Click me</Button>
-                  </CardActions>
-              </Card>
-              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
-              <TextField  autoFocus  margin="dense"  id="name"  label="Email Address"  type="email"  fullWidth/>
+            <DialogContentText>
+              Add you present status either student or employee.Add you education and work 
+              experiences.Add your contact info to know other about you.
+            </DialogContentText>
+            <Grid>
+              <List component="nav" aria-label="main mailbox folders">
+                  <ListItem button onClick={handleChangeinputoverview} style={{border:'1px solid gray',marginTop:'20px'}}>
+                    <ListItemIcon><AccountCircleIcon/></ListItemIcon>
+                    <ListItemText primary="Overview" />
+                    <ListItemSecondaryAction style={{marginLeft:'auto'}}>
+                        <IconButton edge="end"><AddCircleIcon/></IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                  <Collapse in={checkedoverview}>
+                      <Grid container>
+                          <Grid lg={6} xs={6}>
+                                <TextField  margin="dense"  id="name"  label="Present Position"  type="text"  style={{width:'90%'}}/>
+                          </Grid>
+                          <Grid lg={6} xs={6}>
+                                <TextField  margin="dense"  id="name"  label="Place"  type="text"  style={{width:'90%'}}/>
+                          </Grid>
+                      </Grid>
+                  </Collapse>
+
+                  <ListItem button onClick={handleChangeinputeducation} style={{border:'1px solid gray',marginTop:'20px'}}>
+                    <ListItemIcon>  <LocalLibraryIcon/></ListItemIcon>
+                    <ListItemText primary="Education" />
+                    <ListItemSecondaryAction style={{marginLeft:'auto'}}>
+                        <IconButton edge="end"><AddCircleIcon/></IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+
+                  <Collapse in={checkededucation}>
+                    <Grid container>
+                      <Grid lg={6} xs={6}>
+                            <TextField  margin="dense"  id="name"  label="Courses"  type="text"  style={{width:'90%'}}/>
+                      </Grid>
+                      <Grid lg={6} xs={6}>
+                            <TextField  margin="dense"  id="name"  label="Year"  type="text"  style={{width:'90%'}}/>
+                      </Grid>
+                    </Grid>
+                      <TextField  margin="dense"  id="name"  label="College"  type="text"  fullWidth/>
+                  </Collapse>
+
+
+                  <ListItem button onClick={handleChangeinputwork} style={{border:'1px solid gray',marginTop:'20px'}}>
+                    <ListItemIcon><WorkIcon/></ListItemIcon>
+                    <ListItemText primary="Work and Experiences" />
+                    <ListItemSecondaryAction style={{marginLeft:'auto'}}>
+                        <IconButton edge="end"><AddCircleIcon/></IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+
+                  <Collapse in={checkedwork}>
+                    <Grid container>
+                      <Grid lg={6} xs={6}>
+                            <TextField  margin="dense"  id="name"  label="Occupations"  type="text"  style={{width:'90%'}}/>
+                      </Grid>
+                      <Grid lg={6} xs={6}>
+                            <TextField  margin="dense"  id="name"  label="Year"  type="text"  style={{width:'90%'}}/>
+                      </Grid>
+                    </Grid>
+                      <TextField  margin="dense"  id="name"  label="Company Name"  type="text"  fullWidth/>
+                  </Collapse>
+
+                  <ListItem button onClick={handleChangeinputcontact} style={{border:'1px solid gray',marginTop:'20px'}}>
+                    <ListItemIcon><ContactsIcon /></ListItemIcon>
+                    <ListItemText primary="Contact info" />
+                    <ListItemSecondaryAction style={{marginLeft:'auto'}}>
+                        <IconButton edge="end"><AddCircleIcon/></IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+
+                  <Collapse in={checkedcontact}>
+                    <Grid container>
+                      <Grid lg={6} xs={6}>
+                            <TextField  margin="dense"  id="name"  label="Email"  type="email"  style={{width:'90%'}}/>
+                      </Grid>
+                      <Grid lg={6} xs={6}>
+                            <TextField  margin="dense"  id="name"  label="Website"  type="email"  style={{width:'90%'}}/>
+                      </Grid>
+                    </Grid>
+                      <TextField  margin="dense"  id="name"  label="Address"  type="email"  fullWidth/>
+                  </Collapse>
+
+              </List>
+            </Grid>
           </DialogContent>
           <DialogActions>
               <Button onClick={handleClose}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Save</Button>
@@ -190,7 +286,7 @@ export default function About() {
         <div style={{display:'flex',padding:'10px 20px 0px 20px',background:'lavender'}}>
             <Typography style={{padding:'10px',height:'30px'}} variant="h6" component="h5">About</Typography>
             <div style={{marginLeft:'auto'}}>
-                <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}><CreateIcon/></IconButton>
+                <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}><AddIcon/></IconButton>
             </div>
         </div>
         <Divider />
@@ -202,17 +298,17 @@ export default function About() {
                 >
                   <Tab label="Overview" {...a11yProps(0)} />
                   <Tab label="Education" {...a11yProps(1)} />
-                  <Tab label="Word and experience" {...a11yProps(2)} />
+                  <Tab label="Work and experience" {...a11yProps(2)} />
                   <Tab label="COntact info" {...a11yProps(3)} />
                 </Tabs>
                 <TabPanel value={value} index={0} style={{height:'100%',overflow:'scroll',width:'100%',overflowX:'hidden'}}>
                     <List className={classes.root}>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <ImageIcon /> */}  </Avatar></ListItemAvatar>
+                        <ListItem><ListItemAvatar><Avatar><LanguageIcon /></Avatar></ListItemAvatar>
                           <ListItemText 
                           primary="Undergraduate Computer Engineering" 
                           secondary="ZHCET,AMU" />
                         </ListItem>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <WorkIcon /> */}  </Avatar>
+                        <ListItem><ListItemAvatar><Avatar><LanguageIcon/></Avatar>
                           </ListItemAvatar>
                           <ListItemText primary="Work" secondary="Jan 7, 2014" />
                         </ListItem>
@@ -221,19 +317,19 @@ export default function About() {
 
                 <TabPanel value={value} index={1} style={{height:'100%',overflow:'scroll',width:'100%',overflowX:'hidden'}}>
                     <List className={classes.root}>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <ImageIcon /> */}  </Avatar></ListItemAvatar>
+                        <ListItem><ListItemAvatar><Avatar><LocalLibraryIcon/></Avatar></ListItemAvatar>
                           <ListItemText 
                           primary="Undergraduate Computer Engineering" 
                           secondary="ZHCET,AMU" />
                         </ListItem>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <WorkIcon /> */}  </Avatar>
+                        <ListItem><ListItemAvatar><Avatar><LocalLibraryIcon/> </Avatar>
                           </ListItemAvatar>
                           <ListItemText 
                           primary="Senior Secondary School" 
                           secondary="AMU" />
                         </ListItem>
                         <ListItem>
-                            <ListItemAvatar><Avatar> {/* <BeachAccessIcon /> */}  </Avatar></ListItemAvatar>
+                            <ListItemAvatar><Avatar><LocalLibraryIcon/></Avatar></ListItemAvatar>
                           <ListItemText 
                           primary="Primary Education" 
                           secondary={<a href="#">Midas school of Learning</a>} />
@@ -243,16 +339,12 @@ export default function About() {
                         
                 <TabPanel value={value} index={2} style={{height:'100%',overflow:'scroll',width:'100%',overflowX:'hidden'}}>
                     <List className={classes.root}>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <ImageIcon /> */}  </Avatar></ListItemAvatar>
+                        <ListItem><ListItemAvatar><Avatar><WorkIcon/></Avatar></ListItemAvatar>
                           <ListItemText primary="Photos" secondary="Jan 9, 2014" />
                         </ListItem>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <WorkIcon /> */}  </Avatar>
+                        <ListItem><ListItemAvatar><Avatar><WorkIcon/></Avatar>
                           </ListItemAvatar>
                           <ListItemText primary="Work" secondary="Jan 7, 2014" />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemAvatar><Avatar> {/* <BeachAccessIcon /> */}  </Avatar></ListItemAvatar>
-                          <ListItemText primary="Vacation" secondary="July 20, 2014" />
                         </ListItem>
                     </List>
                 </TabPanel>
@@ -260,12 +352,12 @@ export default function About() {
 
                 <TabPanel value={value} index={3} style={{height:'100%',overflow:'scroll',width:'100%',overflowX:'hidden'}}>
                     <List className={classes.root}>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <ImageIcon /> */}  </Avatar></ListItemAvatar>
+                        <ListItem><ListItemAvatar>  <Avatar><ContactsIcon /></Avatar></ListItemAvatar>
                           <ListItemText 
                           primary="Website" 
                           secondary={<a href="https://m879.github.io/merajahmed.github.io/">merajahmed.live</a>} />
                         </ListItem>
-                        <ListItem><ListItemAvatar>  <Avatar>    {/* <WorkIcon /> */}  </Avatar>
+                        <ListItem><ListItemAvatar><Avatar><ContactsIcon/></Avatar>
                           </ListItemAvatar>
                           <ListItemText 
                           primary="Instagram" 

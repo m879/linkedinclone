@@ -53,6 +53,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 
 
@@ -80,12 +81,12 @@ export default function Interests() {
 
   return (
       <div>
-            <Paper elevation={3} style={{margin:'30px 10px 10px 10px'}} >
+            <Paper elevation={3} style={{margin:'0px 10px 10px 10px'}} >
                 <div style={{display:'flex',padding:'0px 20px 0px 20px',background:'lavender'}}>
                    <Typography  variant="h6" component="h5" 
                    style={{padding:'0.625rem'}}>People also viewed</Typography>
                 </div> 
-                <Grid container style={{marginTop:'30px'}}>
+                <Grid container>
                     <List component="nav" aria-label="main mailbox folders">
                         {
                             recent.map((row) => (
@@ -99,7 +100,7 @@ export default function Interests() {
                                     primary= {row.notifications}
                                     secondary="Student"/>
                                     <ListItemSecondaryAction style={{marginLeft:'auto'}}>
-                                        <IconButton edge="end"><GroupAddIcon/></IconButton>
+                                        <IconButton edge="end"><PersonAddIcon/></IconButton>
                                     </ListItemSecondaryAction>
                                 </ListItem>
                               ))
@@ -132,7 +133,7 @@ export default function Interests() {
                                     primary= {row.notifications}
                                     secondary="Engineer"/>
                                     <ListItemSecondaryAction>
-                                        <IconButton edge="end"><GroupAddIcon/></IconButton>
+                                        <IconButton edge="end"><PersonAddIcon/></IconButton>
                                     </ListItemSecondaryAction>
                                 </ListItem>
                               ))

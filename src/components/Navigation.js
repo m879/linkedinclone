@@ -256,7 +256,7 @@ const drawer = (
           </IconButton>
 
      
-    <Card  variant="outlined" style={{margin:'10px',paddingBottom:'30px',marginTop:'-10px'}}>
+    <Card  variant="outlined" id='sidebarcard'>
         <CardActionArea >
           <CardMedia     style={{height:'100px'}}
             image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"

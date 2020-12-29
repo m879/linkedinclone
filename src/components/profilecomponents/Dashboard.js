@@ -69,34 +69,25 @@ export default function Dashboard() {
             <Grid lg={4} xs={4}>
                 <Card variant="outlined">
                     <CardContent>
-                      <Typography  color="textSecondary" gutterBottom>Word of the Day</Typography>
-                      <Typography variant="body2" component="p">well meaning and kindly.</Typography>
+                      <Typography style={{color:"blue"}}  gutterBottom>42</Typography>
+                      <Typography variant="body2" component="p">Who viewed your profile</Typography>
                     </CardContent>
-                    <CardActions>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
                 </Card>
             </Grid>
             <Grid lg={4} xs={4}>
                 <Card variant="outlined">
                     <CardContent>
-                      <Typography  color="textSecondary" gutterBottom>Word of the Day</Typography>
-                      <Typography variant="body2" component="p">well meaning and kindly.</Typography>
+                      <Typography  style={{color:"blue"}}  gutterBottom>200</Typography>
+                      <Typography variant="body2" component="p">Posts views</Typography>
                     </CardContent>
-                    <CardActions>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
                 </Card>
             </Grid>
             <Grid lg={4} xs={4}>
                 <Card variant="outlined">
                     <CardContent>
-                      <Typography  color="textSecondary" gutterBottom>Word of the Day</Typography>
-                      <Typography variant="body2" component="p">well meaning and kindly.</Typography>
+                      <Typography   style={{color:"blue"}} gutterBottom>30</Typography>
+                      <Typography variant="body2" component="p">Search appearances</Typography>
                     </CardContent>
-                    <CardActions>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
                 </Card>
             </Grid>
         </Grid>

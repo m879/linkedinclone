@@ -1,5 +1,8 @@
 import React from 'react';
 import './style.css';
+import { NavLink } from 'react-router-dom';
+
+
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -140,7 +143,9 @@ const Connections= () => {
                                              {/* </ListItemAvatar> */}
                                             {/* <ListItemText  primary= {row.notifications} secondary="Student"/> */}
                                             <ListItemSecondaryAction style={{marginLeft:'auto'}}>
-                                                <IconButton edge="end"><ChatIcon/></IconButton>
+                                                <NavLink to="/messages">
+                                                    <IconButton edge="end"><ChatIcon/></IconButton>
+                                                </NavLink>
                                                 <IconButton edge="end"><MoreHorizIcon/></IconButton>
                                             </ListItemSecondaryAction>
                                         </ListItem>
