@@ -124,7 +124,7 @@ export default function Skills() {
 
 
             <div style={{display:'flex',padding:'10px 20px 0px 20px',background:'lavender'}}>
-               <Typography style={{padding:'10px',height:'30px'}} variant="h6" component="h5">Skills & Endorsements</Typography>
+               <Typography style={{padding:'10px'}} variant="h6" component="h5">Skills & Endorsements</Typography>
                <div style={{marginLeft:'auto'}}>
                <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}><AddIcon/></IconButton>
                 </div>

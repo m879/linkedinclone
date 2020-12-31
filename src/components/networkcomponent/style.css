@@ -46,6 +46,16 @@
     transform: scale(1) translate(50%, 50%);
     transform-origin: 100% 100%;
 }
+#cardimgback{
+    z-index: -1;
+}
+#cardclosebtn{
+    float: right;
+    margin-right: 2%;
+    margin-top: -80px;
+   
+}
+
 @media only screen and (max-width: 600px) {
     #home{
         margin-left:2%;
@@ -61,4 +71,9 @@
     #news{
         display: none;
     }
+    #cardclosebtn{
+        /* margin-top: -75%; */
+        margin-left: 75%;
+    }
+    
   }

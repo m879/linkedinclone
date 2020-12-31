@@ -22,6 +22,8 @@ import SendIcon from '@material-ui/icons/Send';
 
 import TextField from '@material-ui/core/TextField';
 
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -61,21 +63,35 @@ export default function PostCard() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
   const [expandedcomment, setExpandedcomment] = React.useState(false);
-
   const handleExpandClickcomment = () => {
     setExpandedcomment(!expandedcomment);
   };
 
+// FOR MENU ITEM
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Card className={classes.root} variant="outlined" style={{margin:'30px 10px 30px 10px'}}>
+
+      <Menu  id="simple-menu"  anchorEl={anchorEl}  keepMounted  open={Boolean(anchorEl)}  onClose={handleClose}>
+        <MenuItem onClick={handleClose}>Save</MenuItem>
+        <MenuItem onClick={handleClose}>Unfollow</MenuItem>
+        <MenuItem onClick={handleClose}>Report</MenuItem>
+      </Menu>
+
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>R</Avatar>
         }
         action={
-          <IconButton aria-label="settings"><MoreVertIcon /></IconButton>
+          <IconButton aria-label="settings"  onClick={handleClick}><MoreVertIcon /></IconButton>
         }
         title="Shrimp and Chorizo Paella"
         subheader="September 14, 2016"
@@ -91,7 +107,6 @@ export default function PostCard() {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites"><ThumbUpIcon /></IconButton>
-        
         <IconButton aria-label="comment"
             className={clsx(classes.expandcomment, {
                [classes.expandOpen]: expandedcomment,
@@ -102,7 +117,6 @@ export default function PostCard() {
         </IconButton>
 
         <IconButton aria-label="share"><ShareIcon /></IconButton>
-        <IconButton aria-label="share"><SendIcon/></IconButton>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -132,8 +146,13 @@ export default function PostCard() {
 
       <Collapse in={expandedcomment} timeout="auto" unmountOnExit>
         <CardContent>
-        <TextField label="Start a post"     style={{margin:'20px 10px 20px 10px',width:'95%'}} 
+          <div style={{display:'flex'}}>
+                <TextField label="Start a post"     style={{margin:'0px 10px 0px 10px',width:'95%'}} 
                             variant="outlined"  size="small" />
+                <IconButton aria-label="share" style={{marginTop:'-6px'}}><SendIcon/></IconButton>
+
+          </div>
+
         </CardContent>
       </Collapse>
 

@@ -11,6 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import Avatar from '@material-ui/core/Avatar';
+import CancelIcon from '@material-ui/icons/Cancel';
+import IconButton from '@material-ui/core/IconButton';
+
 
 const useStyles = makeStyles({
 //   root: {
@@ -25,12 +28,13 @@ export default function NetworkCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}  variant="outlined" style={{margin:'10px',paddingBottom:'30px',marginTop:'30px'}}>
+    <Card className={classes.root}  variant="outlined" style={{margin:'2%',paddingBottom:'10px',marginTop:'20px'}}>
         <CardActionArea >
-          <CardMedia
+          <CardMedia id="cardimgback"
             className={classes.media}
             image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
           />
+          <IconButton id="cardclosebtn" edge="end" ><CancelIcon/></IconButton>
         </CardActionArea>
         <div id="networkimg">
             <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 

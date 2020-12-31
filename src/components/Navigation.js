@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './style.css'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Editor } from 'react-draft-wysiwyg';
 
 
 
@@ -25,8 +27,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import CloseIcon from '@material-ui/icons/Close';
 import SettingsIcon from '@material-ui/icons/Settings';
 
@@ -38,11 +38,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import MessageIcon from '@material-ui/icons/Message';
-import ContactsIcon from '@material-ui/icons/Contacts';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Avatar from '@material-ui/core/Avatar';
-
 import ChatIcon from '@material-ui/icons/Chat';
 
 
@@ -54,13 +50,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 // import Typography from '@material-ui/core/Typography';
-
-// import Avatar from '@material-ui/core/Avatar';
-
-
-import CardHeader from '@material-ui/core/CardHeader';
-import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -76,6 +65,18 @@ import ImageIcon from '@material-ui/icons/Image';
 import VideocamIcon from '@material-ui/icons/Videocam';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogActions from '@material-ui/core/DialogActions';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Collapse from '@material-ui/core/Collapse';
+import AddIcon from '@material-ui/icons/Add';
+import Grid from '@material-ui/core/Grid';
+import EventIcon from '@material-ui/icons/Event';
+
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -416,6 +417,19 @@ const drawer = (
   const [secondary, setSecondary] = React.useState(false);
 
 
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+
+// FOR MENu
+const [age, setAge] = React.useState('');
+const handleChangeinput = (event) => {
+  setAge(event.target.value);
+};
+// FOR COLLAPSE
+const [checked, setChecked] = React.useState(false);
+const toggledown= () => {
+setChecked((prev) => !prev);
+};
 
 
   return (
@@ -451,75 +465,95 @@ const drawer = (
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
         
-        <Dialog fullScreen className={classes.dialog}  open={openDialog} onClose={handleCloseDialog} TransitionComponent={Transition}>
-            <AppBar className={classes.dialogBar}>
-              <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={handleCloseDialog} aria-label="close">
-                  <CloseIcon />
-                </IconButton>
-                <Typography variant="h6">Share post</Typography>
-              </Toolbar>
-            </AppBar>
-            <DialogContent >
-               <DialogContentText id="scroll-dialog-description"   tabIndex={-1}>          
-                   <div>
-                     <Card style={{marginTop:'30px'}}>
-                     <CardHeader
-                          avatar={<Avatar aria-label="recipe" className={classes.avatar}>R</Avatar> }
-                          action={<Button aria-label="settings">Anyone</Button>}
-                          title="Shrimp and Chorizo Paella"        subheader="September 14, 2016"
-                        />
-                     </Card>
-                     <div>
-                        <TextareaAutosize aria-label="minimum height"  variant="outlined" 
-                        style={{marginTop:'30px',width:'100%'}}
-                        rowsMin={6} placeholder="What do you want to talk about?" />
-                     </div>
-                     <Divider style={{marginTop:'30px',marginBottom:'30px'}}/>
-                     <div>
-                       <List >
-                          <ListItem button>
-                             <ListItemAvatar><Avatar><ImageIcon/>   </Avatar></ListItemAvatar>
-                             <ListItemText  primary="Add a photo"  secondary={secondary ? 'Secondary text' : null}/>
-                          </ListItem>
-                          <ListItem button>
-                             <ListItemAvatar><Avatar><VideocamIcon/>  </Avatar></ListItemAvatar>
-                             <ListItemText  primary="Take a video"  secondary={secondary ? 'Secondary text' : null}/>
-                          </ListItem>
-                          <ListItem button>
-                             <ListItemAvatar><Avatar>{/* <FolderIcon /> */}  </Avatar></ListItemAvatar>
-                             <ListItemText  primary="Create a poll"  secondary={secondary ? 'Secondary text' : null}/>
-                          </ListItem>
-                          <ListItem button>
-                             <ListItemAvatar><Avatar>{/* <FolderIcon /> */}  </Avatar></ListItemAvatar>
-                             <ListItemText  primary="Share a story"  secondary={secondary ? 'Secondary text' : null}/>
-                          </ListItem>
-                       </List>
+            <Dialog  fullScreen={fullScreen}   open={openDialog} onClose={handleCloseDialog}
+                aria-labelledby="responsive-dialog-title">
+                <div style={{display:"flex"}}>
+                    <DialogTitle id="responsive-dialog-title">{"Create a post"}</DialogTitle>
+                  <div style={{marginLeft:'auto',marginTop:'10px',marginRight:'5%'}}>
+                    <IconButton onClick={handleCloseDialog}  edge="end"><CloseIcon/></IconButton>
+                  </div>
+                </div>
+              <DialogContent  dividers>
+                  <Grid>
+                      <List>
+                      <ListItem style={{width:'60%'}}>
+                          <ListItemAvatar>
+                             <Avatar  src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg" />
+                           </ListItemAvatar>
+                          <ListItemText primary= "Meraj"secondary="Student"/>
+                              <FormControl >
+                              <Select  displayEmpty value={age}  onChange={handleChangeinput}>
+                              <MenuItem value="" disabled>Public</MenuItem>
+                                <MenuItem value={20}>Connection</MenuItem>
+                                <MenuItem value={30}>Group members</MenuItem>
+                              </Select>
+                          </FormControl>
+                      </ListItem>
+                      </List>
+                  </Grid>
+                  <Editor
+                      placeholder="What do you want to talk now?"
+                      toolbarClassName="toolbarClassName"
+                      wrapperClassName="wrapperClassName"
+                      editorClassName="editorClassName"
+                      toolbar={{
+                        inline: { inDropdown: true },
+                        list: { inDropdown: true },
+                        textAlign: { inDropdown: true },
+                        link: { inDropdown: true },
+                        history: { inDropdown: true },
+                      }}
+                  />
+               
+                  <Grid container style={{marginTop:'50px'}}>
+                    <Grid style={{width:'100%',display:'flex'}}>
+                        <div>
+                          <IconButton onClick={toggledown}  edge="end"><AddIcon/></IconButton>
+                          <IconButton   edge="end"><ImageIcon /></IconButton>
+                          <IconButton   edge="end"><VideocamIcon/></IconButton>
+                          <IconButton   edge="end"><EventIcon/></IconButton>
+                        </div>
+                        <div style={{marginLeft:'auto'}}>
+                          <Button   style={{borderRadius:'20px'}}
+                          color="primary"  edge="end" variant="contained">Post</Button>
+                        </div>
+                    </Grid>
+                  <Collapse in={checked} Grid style={{width:'100%'}}>
+                      <Grid container style={{marginTop:'30px'}}>
+                          <Grid lg={6} xs={6}>
+                              <div style={{textAlign:'center'}}>
+                              <Button   style={{borderRadius:'20px'}}   
+                              color="primary"  edge="end" variant="outlined">Celebrate an occassion</Button>
+                              </div>
+                          </Grid>
+                          <Grid lg={6} xs={6}>
+                              <div style={{textAlign:'center'}}>
+                              <Button   style={{borderRadius:'20px'}}
+                                color="primary"  edge="end" variant="outlined">Share that you're hiring</Button>
+                              </div>
+                          </Grid>
+                      </Grid>
+                      <Grid container style={{marginTop:'30px',marginBottom:'30px'}}>
+                          <Grid lg={6} xs={6}>
+                              <div style={{textAlign:'center'}}>
+                              <Button   style={{borderRadius:'20px'}}   
+                              color="primary"  edge="end" variant="outlined">Find an expert</Button>
+                              </div>
+                          </Grid>
+                          <Grid lg={6} xs={6}>
+                              <div style={{textAlign:'center'}}>
+                              <Button   style={{borderRadius:'20px'}}
+                                color="primary"  edge="end" variant="outlined">Create a poll</Button>
+                              </div>
+                          </Grid>
+                      </Grid>
+                  </Collapse>
+                </Grid>
+              </DialogContent>
+           </Dialog>
 
-                     </div>
-                   </div>   
-               </DialogContentText>
-            </DialogContent>
-        </Dialog>
 
 
-            {/* <IconButton aria-label="show 17 new notifications" onClick={handleClickOpenDialog} color="inherit"> */}
-              {/* <Badge badgeContent={17} color="secondary"> */}
-                {/* <NotificationsIcon /> */}
-              {/* </Badge> */}
-            {/* </IconButton> */}
-            {/* <NavLink to="/profile" style={{textDecoration:'none',color:'white'}}>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </NavLink> */}
           </div>
           <IconButton  edge="end"   color="inherit">
                 <NavLink to="/messages" ><ChatIcon style={{color:'white'}}/></NavLink>
