@@ -1,0 +1,24 @@
+{
+    "news" : [
+        {
+            "id": 1,
+            "heading":"The traits creative hires must have"
+        },
+        {
+            "id" : 2,
+            "heading":"The 0-5 may soon become"
+        },
+        {
+            "id": 3,
+            "heading":"The office will fight to win back you"
+        },
+        {
+            "id": 4,
+            "heading":"A bright future for digital nomads"
+        },
+        {
+            "id": 5,
+            "heading":"Vaccine: what come next"
+        }
+    ]
+}

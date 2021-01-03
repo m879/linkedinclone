@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
-// import PostCard from './cards/PostsCard';
 
 import PostCard from './cards/PostsCard';
+import Postdata from './data/Postdata.json';
+import Statusdata from './data/Statusdata.json';
+import Newsdata from './data/Newsdata.json';
+import Personsuggested from './data/Suggestedperson.json';
 
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
-
+import { makeStyles } from '@material-ui/core/styles';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -62,64 +64,89 @@ import Select from '@material-ui/core/Select';
 import Collapse from '@material-ui/core/Collapse';
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-let recent=[
-    {
-       id:"1",
-       notifications:"You have a new connection"
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
+
+// https://cdn.pixabay.com/photo/2016/11/14/04/57/young-1822656_960_720.jpg
+// https://cdn.pixabay.com/photo/2015/01/15/12/46/model-600225_960_720.jpg
+// https://cdn.pixabay.com/photo/2016/11/13/12/22/woman-1820868_960_720.jpg
+// https://cdn.pixabay.com/photo/2016/03/23/08/34/beautiful-1274360_960_720.jpg
+// https://cdn.pixabay.com/photo/2019/04/03/18/11/girl-4100999_960_720.jpg
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
     },
-    {
-        id:"2",
-        notifications:"You have a new connection"
+    input: {
+      display: 'none',
     },
-    {
-        id:"3",
-        notifications:"You have a new connection"
-    },
-    {
-        id:"4",
-        notifications:"You have a new connection"
-    },
-    {
-        id:"5",
-        notifications:"You have a new connection"
-    },
-    {
-        id:"6",
-        notifications:"You have a new connection"
-    }
-]
+  }));
 
 
 
 const Home = () => {
 
+    const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    // FOR IMAGE INPUT
+    const [file, setFile] = useState(null);
+    const fileHandler = event => {
+      console.log(event.target.files[0]);
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        setFile(e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+    //TO GET USER INPUT
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
+    const handleFirstNameChange = ({ target }) => {
+      setFirstName(target.value);
+    };
+    const handleLastNameChange = ({ target }) => {
+      setLastName(target.value);
+    };
+   //TO GET USER INPUT ON CLICKING BUTTON
+    const handleClicksubmit = () => {
+      console.log(first_name);
+      console.log(last_name);
+      Postdata.data.push({        //add the employee
+          username:"Rehan Akram",
+          work:"Student",
+          img:file,
+          blogText:first_name,  
+          blogDatail:last_name,
+      });
+      handleClose();
+    };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+    //FOR MODAL WORK
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-
-// FOR MENu
-  const [age, setAge] = React.useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
-     
-// FOR COLLAPSE
-const [checked, setChecked] = React.useState(false);
-const handleChangeinput = () => {
-  setChecked((prev) => !prev);
-};
+    // FOR MENu
+    const [age, setAge] = React.useState('');
+    const handleChange = (event) => {
+      setAge(event.target.value);
+    };
+    
+    // FOR COLLAPSE
+    const [checked, setChecked] = React.useState(false);
+    const handleChangeinput = () => {
+      setChecked((prev) => !prev);
+    };
 
     return (
        <div id="home">
@@ -141,40 +168,59 @@ const handleChangeinput = () => {
                        <Avatar  src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg" />
                      </ListItemAvatar>
                     <ListItemText primary= "Meraj"secondary="Student"/>
-                        <FormControl >
-                        <Select  displayEmpty value={age}  onChange={handleChange}>
-                        <MenuItem value="" disabled>Public</MenuItem>
-                          <MenuItem value={20}>Connection</MenuItem>
-                          <MenuItem value={30}>Group members</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <ListItemSecondaryAction>
+                        <FormControl style={{marginRight:'5%'}}>
+                            <Select  displayEmpty value={age}  onChange={handleChange}>
+                            <MenuItem value="" disabled>Public</MenuItem>
+                              <MenuItem value={20}>Connection</MenuItem>
+                              <MenuItem value={30}>Group members</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </ListItemSecondaryAction>
                 </ListItem>
                 </List>
             </Grid>
-            <Editor
-                placeholder="What do you want to talk now?"
-                toolbarClassName="toolbarClassName"
-                wrapperClassName="wrapperClassName"
-                editorClassName="editorClassName"
-                toolbar={{
-                  inline: { inDropdown: true },
-                  list: { inDropdown: true },
-                  textAlign: { inDropdown: true },
-                  link: { inDropdown: true },
-                  history: { inDropdown: true },
-                }}
-            />
+            <Grid style={{marginTop:'50px'}}>
+                {/* <Alertmsg text="Uploaded Successfully"/> */}
+            <TextField label="Write short discription"  style={{width:'100%'}} 
+              onChange={handleFirstNameChange}
+              variant="outlined" id="standard-size-small"  size="small" />
+            <TextareaAutosize  aria-label="minimum height"   onChange={handleLastNameChange}
+            style={{border:'1px solid rgba(0, 0, 0, 0.23)',width:'100%',outline:'none',marginTop:'20px'}}
+            rowsMin={5} placeholder="What do you want to talk now?" />
+
+            </Grid>
+            {/* <Editor */}
+                {/* // placeholder="What do you want to talk now?" */}
+                {/* // toolbarClassName="toolbarClassName" */}
+                {/* // wrapperClassName="wrapperClassName" */}
+                {/* // editorClassName="editorClassName" */}
+                {/* // toolbar={{ */}
+                {/* //   inline: { inDropdown: true }, */}
+                {/* //   list: { inDropdown: true }, */}
+                {/* //   textAlign: { inDropdown: true }, */}
+                {/* //   link: { inDropdown: true }, */}
+                {/* //   history: { inDropdown: true }, */}
+                {/* // }} */}
+            {/* // /> */}
          
             <Grid container style={{marginTop:'50px'}}>
               <Grid style={{width:'100%',display:'flex'}}>
                   <div>
                     <IconButton onClick={handleChangeinput}  edge="end"><AddIcon/></IconButton>
-                    <IconButton onClick={handleClose}  edge="end"><ImageIcon /></IconButton>
+                    <input accept="image/*" onChange={fileHandler} className={classes.input} id="icon-button-file" type="file" />
+                    <label htmlFor="icon-button-file">
+                      <IconButton color="primary" aria-label="upload picture" component="span">
+                      <ImageIcon />
+                      </IconButton>
+                    </label>
+                    {/* <IconButton onClick={handleClose}  edge="end"><ImageIcon /></IconButton> */}
                     <IconButton onClick={handleClose}  edge="end"><VideocamIcon/></IconButton>
                     <IconButton onClick={handleClose}  edge="end"><EventIcon/></IconButton>
                   </div>
                   <div style={{marginLeft:'auto'}}>
-                    <Button onClick={handleClose}  style={{borderRadius:'20px'}}
+                    <Button  style={{borderRadius:'20px'}}
+                   onClick={handleClicksubmit}
                     color="primary"  edge="end" variant="contained">Post</Button>
                   </div>
               </Grid>
@@ -225,35 +271,18 @@ const handleChangeinput = () => {
                     <Paper elevation={3} style={{margin:'10px'}} >
                         <Grid container style={{paddingTop:'20px',paddingBottom:'3px'}}>
                             <div style={{display:'flex',overflow:'scroll',overflowY:'hidden',paddingBottom:'20px'}}>
-                            <Badge color="secondary" 
-                            variant="dot"
-                            badgeContent=" " 
-                            // style={{height:'20px',width:'20px'}}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'right',
-                              }}
+                            <Badge color="secondary"     variant="dot"    badgeContent=" " 
+                            anchorOrigin={{  vertical: 'bottom',  horizontal: 'right',}}
                             >
-                                <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"  
-                                style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
-                            </Badge>
                             <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"  
-                                style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
-
-                            <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"  
-                                style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
-
-                            <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"  
-                                style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
-
-                            <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"  
-                                style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
-                            <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"  
-                                style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
-                            <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg"  
-                                style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
-
-
+                            style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
+                            </Badge>                            
+                            {
+                                Statusdata.status.map((row) => (
+                                    <img src={row.img}
+                                    style={{height:'70px',width:'70px',borderRadius:'100%',border:"2px dotted blue",marginLeft:'20px'}}/>
+                                ))
+                            }
                             </div>
                         </Grid>
                     </Paper>
@@ -264,29 +293,28 @@ const handleChangeinput = () => {
                             onClick={handleClickOpen}   disabled    variant="outlined" id="postinput"  size="small" />
                           <Grid container  >
                               <Grid lg={4} xs={4} style={{textAlign:'center'}}>
-                                  <Button    color="primary"  size="small"  startIcon={<ImageIcon />}>Photo</Button>
+                                  <Button   onClick={handleClickOpen}  color="primary"  size="small"  startIcon={<ImageIcon />}>Photo</Button>
                               </Grid>
                               <Grid lg={4} xs={4} style={{textAlign:'center'}}>
-                                  <Button   color="primary"  size="small"  startIcon={<VideocamIcon/>}>Video</Button>
+                                  <Button onClick={handleClickOpen}   color="primary"  size="small"  startIcon={<VideocamIcon/>}>Video</Button>
                               </Grid>
                               <Grid lg={4} xs={4} style={{textAlign:'center'}}>
-                                  <Button    color="primary"  size="small"  startIcon={<EventIcon/>}>Event</Button>
+                                  <Button  onClick={handleClickOpen}   color="primary"  size="small"  startIcon={<EventIcon/>}>Event</Button>
                               </Grid>
                           </Grid>
                         </Grid>
                     </Paper>
-                    {/* <Divider  style={{margin:'30px 10px 10px 30px'}}/> */}
                     <Grid>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
-                        <PostCard/>
+                    {
+                        Postdata.data.map((row) => (
+                            <PostCard 
+                            username={row.username}    work={row.work}
+                            img={row.img}
+                            shortdetail={row.blogText}    detail={row.blogDatail}
+                            />
+                          ))
+                    }
                     </Grid>
-
-              
-
-
                </Grid>
                
                <Grid lg={4}  id="news">
@@ -295,16 +323,13 @@ const handleChangeinput = () => {
                            <Typography  variant="h6" component="h5" 
                            style={{padding:'10px'}}>News</Typography>
                         </div> 
-                        <Grid container style={{marginTop:'30px'}}>
+                        <Grid container >
                             <List component="nav" aria-label="main mailbox folders">
                                 {
-                                    recent.map((row) => (
+                                    Newsdata.news.map((row) => (
                                         <ListItem button>
-                                            <ListItemIcon><InboxIcon /></ListItemIcon>
-                                            <ListItemText primary= {row.notifications}/>
-                                            <ListItemSecondaryAction>
-                                                <IconButton edge="end" aria-label="delete"><MoreHorizIcon/></IconButton>
-                                            </ListItemSecondaryAction>
+                                            <ListItemIcon><InboxIcon style={{color:'blue'}}/></ListItemIcon>
+                                            <ListItemText primary= {row.heading}/>
                                         </ListItem>
                                       ))
                                 }
@@ -315,27 +340,24 @@ const handleChangeinput = () => {
                     <Paper elevation={3} style={{margin:'30px 10px 10px 10px',position:'sticky',top:'100px'}} >
                         <div style={{display:'flex',padding:'0px 20px 0px 20px',background:'lavender'}}>
                            <Typography  variant="h6" component="h5" 
-                           style={{padding:'10px'}}>News</Typography>
+                           style={{padding:'10px'}}>Add to your feed</Typography>
                         </div> 
-                        <Grid container style={{marginTop:'30px'}}>
+                        <Grid container>
                             <List component="nav" aria-label="main mailbox folders">
                                 {
-                                    recent.map((row) => (
+                                    Personsuggested.person.map((row) => (
                                         <ListItem button>
-                                            <ListItemIcon><InboxIcon /></ListItemIcon>
-                                            <ListItemText primary= {row.notifications}/>
+                                            <ListItemAvatar><Avatar  src={row.img}/></ListItemAvatar>
+                                            <ListItemText   primary= {row.username}  secondary={row.work}/>
                                             <ListItemSecondaryAction>
-                                                <IconButton edge="end" aria-label="delete"><MoreHorizIcon/></IconButton>
+                                                <IconButton edge="end"><PersonAddIcon/></IconButton>
                                             </ListItemSecondaryAction>
                                         </ListItem>
-                                      ))
+                                    ))
                                 }
                             </List>
                         </Grid>
                     </Paper>
-
-
-
                </Grid>
            </Grid>
           

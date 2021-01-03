@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-
+import Personrequest from '../data/Suggestedperson.json';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -124,6 +124,10 @@ export default function SimpleTabs() {
     setValue(newValue);
   };
 
+  // To hide on clicking button
+  const [show, toggleShow] = React.useState(true);
+
+  
   return (
     <div id="home">
          <Grid container> 
@@ -146,53 +150,43 @@ export default function SimpleTabs() {
                     </AppBar>
                     <TabPanel value={value} index={0} style={{width:'100%'}}>
                         <List component="nav" aria-label="main mailbox folders">
-                            {
-                                recent.map((row) => (
+                            {show &&
+                                Personrequest.person.map((row) => (
                                     <div>
                                     <ListItem style={{width:'100%'}} button>
                                         <div style={{width:'90%',display:'flex'}}>
                                         <ListItemAvatar style={{marginTop:'10px'}}>
-                                           <Avatar
-                                            src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-                                           />
+                                           <Avatar src={row.img} />
                                          </ListItemAvatar>
-                                        <ListItemText  primary= {row.notifications} 
-                                        secondary="Aligarh Muslim University"/>
-
+                                        <ListItemText  primary= {row.username}  secondary={row.work}/>
                                         </div>
                                         <ListItemSecondaryAction style={{marginLeft:'auto'}}>
                                             <IconButton edge="end"><PersonAddIcon style={{color:'blue'}}/></IconButton>
-                                            <IconButton edge="end"><CancelIcon color="secondary"/></IconButton>
+                                            <IconButton edge="end" onClick={() => toggleShow(!show)}><CancelIcon color="secondary"/></IconButton>
                                         </ListItemSecondaryAction>
                                     </ListItem>
                                     <Divider  style={{margin:'2px 0px 0px 0px'}}/>
                                     </div>
                                 ))
-                            }
+                          }  
                         </List>
-
                     </TabPanel>
 
 
                     <TabPanel value={value} index={1}>
                         <List component="nav" aria-label="main mailbox folders">
                             {
-                                recent.map((row) => (
+                                Personrequest.person.map((row) => (
                                     <div>
                                     <ListItem style={{width:'100%'}} button>
                                         <div style={{width:'70%',display:'flex'}}>
                                         <ListItemAvatar style={{marginTop:'10px'}}>
-                                           <Avatar
-                                            src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-                                           />
+                                           <Avatar  src={row.img} />
                                          </ListItemAvatar>
-                                        <ListItemText  primary= {row.notifications} 
-                                        secondary="Aligarh Muslim University"/>
-
+                                        <ListItemText  primary= {row.username} secondary={row.work}/>
                                         </div>
                                         <ListItemSecondaryAction style={{marginLeft:'auto'}}>
                                             <Button edge="end" size="small" variant="outlined">Withdraw</Button>
-                                            {/* <IconButton edge="end"><MoreHorizIcon/></IconButton> */}
                                         </ListItemSecondaryAction>
                                     </ListItem>
                                     <Divider  style={{margin:'2px 0px 0px 0px'}}/>

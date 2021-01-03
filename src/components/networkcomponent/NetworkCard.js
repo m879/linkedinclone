@@ -26,15 +26,18 @@ const useStyles = makeStyles({
 
 export default function NetworkCard() {
   const classes = useStyles();
+  const [show, toggleShow] = React.useState(true);
 
   return (
-    <Card className={classes.root}  variant="outlined" style={{margin:'2%',paddingBottom:'10px',marginTop:'20px'}}>
+    <div>
+  {show &&
+    <Card   variant="outlined" style={{margin:'2%',paddingBottom:'10px',marginTop:'20px'}}>
         <CardActionArea >
           <CardMedia id="cardimgback"
             className={classes.media}
             image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
           />
-          <IconButton id="cardclosebtn" edge="end" ><CancelIcon/></IconButton>
+          <IconButton id="cardclosebtn" edge="end" onClick={() => toggleShow(!show)}><CancelIcon/></IconButton>
         </CardActionArea>
         <div id="networkimg">
             <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
@@ -48,5 +51,7 @@ export default function NetworkCard() {
               <Button variant="outlined" color="primary" size="large">Connect</Button>
         </CardActions>
     </Card>
+   } 
+  </div> 
   );
 }

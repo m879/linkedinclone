@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
  
 }));
 
-export default function PostCard() {
+export default function PostCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -93,17 +93,11 @@ export default function PostCard() {
         action={
           <IconButton aria-label="settings"  onClick={handleClick}><MoreVertIcon /></IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={props.username}  subheader={props.work}
       />
-      <CardMedia    className={classes.media}
-        image="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-      />
+      <CardMedia    className={classes.media}  image={props.img}/>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
-        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p"> {props.shortdetail}</Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites"><ThumbUpIcon /></IconButton>
@@ -131,15 +125,7 @@ export default function PostCard() {
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
+          <Typography paragraph>{props.detail}</Typography>
         </CardContent>
       </Collapse>
 
@@ -150,9 +136,7 @@ export default function PostCard() {
                 <TextField label="Start a post"     style={{margin:'0px 10px 0px 10px',width:'95%'}} 
                             variant="outlined"  size="small" />
                 <IconButton aria-label="share" style={{marginTop:'-6px'}}><SendIcon/></IconButton>
-
           </div>
-
         </CardContent>
       </Collapse>
 

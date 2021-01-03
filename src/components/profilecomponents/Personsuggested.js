@@ -28,23 +28,31 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 
-
 let recent=[
     {
        id:"1",
-       notifications:"Mukesh Ambani"
+       img:'https://cdn.pixabay.com/photo/2017/02/04/12/25/man-2037255_960_720.jpg',
+       notifications:"Adolf"
     },
     {
         id:"2",
-        notifications:"Bill Gates"
+        img:'https://cdn.pixabay.com/photo/2014/07/31/23/49/guitarist-407212_960_720.jpg',
+        notifications:"Harry"
     },
     {
         id:"3",
-        notifications:"Ratan Tata"
+        img:'https://cdn.pixabay.com/photo/2016/01/19/18/04/man-1150058_960_720.jpg',
+        notifications:"Sanjay Kumar"
     },
     {
         id:"4",
-        notifications:"Meraj"
+        img:'https://cdn.pixabay.com/photo/2016/11/29/01/34/fashion-1866574_960_720.jpg',
+        notifications:"John Peter"
+    },
+    {
+        id:"5",
+        img:'https://cdn.pixabay.com/photo/2016/11/23/17/31/bench-1853961_960_720.jpg',
+        notifications:"Albert Row"
     },
 ]
 
@@ -63,11 +71,7 @@ export default function Interests() {
                         {
                             recent.map((row) => (
                                 <ListItem style={{width:'100%'}} button>
-                                    <ListItemAvatar>
-                                       <Avatar
-                                        src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-                                       />
-                                     </ListItemAvatar>
+                                    <ListItemAvatar><Avatar  src={row.img} /></ListItemAvatar>
                                     <ListItemText 
                                     primary= {row.notifications}
                                     secondary="Student"/>
@@ -81,8 +85,7 @@ export default function Interests() {
                 </Grid>
                 <div style={{textAlign:'center',padding:"20px"}}>
                        <Divider style={{marginBottom:'20px'}}/>
-                        <Button variant="outlined" color="primary" 
-                         startIcon={<ExpandMoreIcon />}>See more</Button>
+                        <Button variant="outlined" color="primary"  startIcon={<ExpandMoreIcon />}>See more</Button>
                 </div>
             </Paper>
 
@@ -96,11 +99,7 @@ export default function Interests() {
                         {
                             recent.map((row) => (
                                 <ListItem button>
-                                    <ListItemAvatar>
-                                       <Avatar
-                                        src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
-                                       />
-                                     </ListItemAvatar>
+                                    <ListItemAvatar><Avatar  src={row.img} /></ListItemAvatar>
                                     <ListItemText 
                                     primary= {row.notifications}
                                     secondary="Engineer"/>
@@ -113,9 +112,8 @@ export default function Interests() {
                     </List>
                 </Grid>
                 <div style={{textAlign:'center',padding:"10px"}}>
-                       <Divider style={{marginBottom:'20px'}}/>
-                        <Button variant="outlined" color="primary" 
-                         startIcon={<ExpandMoreIcon />}>See more</Button>
+                    <Divider style={{marginBottom:'20px'}}/>
+                    <Button variant="outlined" color="primary"  startIcon={<ExpandMoreIcon />}>See more</Button>
                 </div>
             </Paper>
       </div>

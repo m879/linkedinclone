@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { NavLink } from 'react-router-dom';
-
+import Personsuggested from '../data/Suggestedperson.json';
 
 
 import Paper from '@material-ui/core/Paper';
@@ -120,25 +120,19 @@ const Connections= () => {
                         <Grid>
                             <List component="nav" aria-label="main mailbox folders">
                                 {
-                                    recent.map((row) => (
+                                    Personsuggested.person.map((row) => (
                                         <div>
                                         <ListItem style={{width:'100%'}} button>
                                         <div style={{width:'90%',display:'flex'}}>
                                            <ListItemAvatar style={{marginTop:'10px'}}>
                                            <Avatar
-                                            src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
+                                            // src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg"
+                                            src={row.img}
                                            />
                                            </ListItemAvatar>
-                                           <ListItemText  primary= {row.notifications} 
-                                           secondary="Aligarh Muslim University"/>
+                                           <ListItemText  primary= {row.username} 
+                                           secondary={row.work} />
                                         </div>
-
-                                            {/* <ListItemAvatar> */}
-                                               {/* <Avatar */}
-                                                {/* // src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg" */}
-                                            {/* //    /> */}
-                                             {/* </ListItemAvatar> */}
-                                            {/* <ListItemText  primary= {row.notifications} secondary="Student"/> */}
                                             <ListItemSecondaryAction style={{marginLeft:'auto'}}>
                                                 <NavLink to="/messages">
                                                     <IconButton edge="end"><ChatIcon/></IconButton>
@@ -164,7 +158,7 @@ const Connections= () => {
                         <Grid container style={{marginTop:'30px'}}>
                             <List component="nav" aria-label="main mailbox folders">
                                 {
-                                    recent.map((row) => (
+                                   recent.map((row) => (
                                         <ListItem button>
                                             <ListItemIcon><InboxIcon /></ListItemIcon>
                                             <ListItemText primary= {row.notifications}/>

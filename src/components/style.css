@@ -60,12 +60,6 @@
     transform: scale(1) translate(50%, 50%);
     transform-origin: 100% 100%;
 }
-.MuiDialogContent-root {
-    flex: 1 1 auto;
-    padding: 8px 10px!important;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
 #postinput:hover{
     background-color: lightgray;
     border-radius: 20px;
@@ -73,7 +67,6 @@
 .rdw-editor-toolbar {
     padding: 6px 5px 0;
     border-radius: 2px;
-    border: 1px solid red;
     display: flex;
     justify-content: flex-start;
     background: white;
