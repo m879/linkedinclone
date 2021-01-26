@@ -264,7 +264,8 @@ const drawer = (
           />
         </CardActionArea>
         <div id="networkimg">
-            <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
+            <Avatar  
+              src="https://cdn.pixabay.com/photo/2015/01/08/18/30/entrepreneur-593371_960_720.jpg" 
             style={{height:'100px',width:'100px',marginTop:'-50px'}}/>
         </div>
         <CardContent style={{textAlign:'center'}}>
@@ -446,7 +447,9 @@ setChecked((prev) => !prev);
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-        <Avatar  src="https://cdn.pixabay.com/photo/2016/03/12/21/05/boy-1252771_960_720.jpg" />
+        <Avatar  
+            src="https://cdn.pixabay.com/photo/2015/01/08/18/30/entrepreneur-593371_960_720.jpg" 
+         />
             {/* <MenuIcon /> */}
           </IconButton>
           <div className={classes.search}>
@@ -478,7 +481,7 @@ setChecked((prev) => !prev);
                       <List>
                       <ListItem style={{width:'60%'}}>
                           <ListItemAvatar>
-                             <Avatar  src="https://cdn.pixabay.com/photo/2015/03/30/12/37/jellyfish-698521_960_720.jpg" />
+                             <Avatar  src="https://cdn.pixabay.com/photo/2015/01/08/18/30/entrepreneur-593371_960_720.jpg" />
                            </ListItemAvatar>
                           <ListItemText primary= "Meraj"secondary="Student"/>
                               <FormControl >
@@ -599,22 +602,22 @@ setChecked((prev) => !prev);
         <BottomNavigation value={value} onChange={handleChange} style={{paddingLeft:'10px',paddingRight:'10px'}}>
             {/* <NavLink to="/" style={{textDecoration:'none'}}> */}
             <BottomNavigationAction   label="Home"            value="recents"   
-                style={{width:'20%!important'}} 
+                style={{width:'25%!important'}} 
                 icon={<NavLink to="/" style={{textDecoration:'none',color:"none"}}> <HomeIcon/></NavLink>} />
             {/* </NavLink> */}
             {/* <NavLink to="/network" style={{textDecoration:'none'}}> */}
                 <BottomNavigationAction   label="Network"         value="favorites" 
-                style={{width:'20%!important'}} icon={<NavLink to="/network" style={{textDecoration:'none'}}><GroupIcon /></NavLink>} />
+                style={{width:'25%!important'}} icon={<NavLink to="/network" style={{textDecoration:'none'}}><GroupIcon /></NavLink>} />
             {/* </NavLink> */}
-            <BottomNavigationAction  label="Post"     value="nearby"    onClick={handleClickOpenDialog}
-                style={{width:'20%!important'}} icon={<PostAddIcon/>} />
+            {/* <BottomNavigationAction  label="Post"     value="nearby"    onClick={handleClickOpenDialog} */}
+                {/* // style={{width:'20%!important'}} icon={<PostAddIcon/>} /> */}
             {/* <NavLink to="/notification" style={{textDecoration:'none'}}> */}
                 <BottomNavigationAction   label="Notifications"   value="folder"    
-                style={{width:'20%!important'}} icon={<NavLink to="/notification" style={{textDecoration:'none'}}><NotificationsIcon/> </NavLink>} />
+                style={{width:'25%!important'}} icon={<NavLink to="/notification" style={{textDecoration:'none'}}><NotificationsIcon/> </NavLink>} />
             {/* </NavLink> */}
             {/* <NavLink to="/jobs" style={{textDecoration:'none'}}> */}
                 <BottomNavigationAction   label="Jobs"            value="jobs"      
-                style={{width:'20%!important'}} icon={<NavLink to="/jobs" style={{textDecoration:'none'}}><WorkIcon/></NavLink>} />
+                style={{width:'25%!important'}} icon={<NavLink to="/jobs" style={{textDecoration:'none'}}><WorkIcon/></NavLink>} />
             {/* </NavLink> */}
         </BottomNavigation>
 

@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function NetworkCard() {
+export default function NetworkCard(props) {
   const classes = useStyles();
   const [show, toggleShow] = React.useState(true);
 
@@ -40,12 +40,14 @@ export default function NetworkCard() {
           <IconButton id="cardclosebtn" edge="end" onClick={() => toggleShow(!show)}><CancelIcon/></IconButton>
         </CardActionArea>
         <div id="networkimg">
-            <Avatar  alt="Remy Sharp" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
+            <Avatar  alt="Remy Sharp"
+            src={props.img} 
+            // src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg" 
             style={{height:'100px',width:'100px',marginTop:'-50px'}}/>
         </div>
         <CardContent style={{textAlign:'center'}}>
-          <Typography gutterBottom variant="h6" component="h5">Meraj Ahmed</Typography>
-          <Typography variant="body2" color="textMuted" component="p">Computer Engineering</Typography>
+          <Typography gutterBottom variant="h6" component="h5">{props.name}</Typography>
+          <Typography variant="body2" color="textMuted" component="p">{props.work}</Typography>
         </CardContent>
         <CardActions style={{textAlign:'center'}}>
               <Button variant="outlined" color="primary" size="large">Connect</Button>

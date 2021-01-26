@@ -27,6 +27,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 
+import person from './data/Networkdata.json';
 
 const Network = () => {
 
@@ -89,41 +90,37 @@ const Network = () => {
               <DialogContent dividers>
                   <Grid container style={{width:'100%'}}>
                        <Grid lg={3} xs={6}>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
+                       {
+                           person.network1.map((row) => (
+                             <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                           ))
+                        }
                        </Grid>
                        <Grid lg={3} xs={6}>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
+                       {
+                           person.network2.map((row) => (
+                             <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                           ))
+                        }
                        </Grid>
                        <Grid lg={3} xs={6}>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
+                       {
+                           person.network3.map((row) => (
+                             <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                           ))
+                        }
                        </Grid>
                        <Grid lg={3} xs={6}>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
-                         <NetworkCard/>
+                       {
+                          person.network4.map((row) => (
+                            <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                          ))
+                       }
                        </Grid>
                   </Grid>
               </DialogContent>
               <DialogActions>
-                  <Button onClick={handleClose}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Save</Button>
+                  <Button onClick={handleClose}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Cancel</Button>
               </DialogActions>
           </Dialog>
 
@@ -137,29 +134,37 @@ const Network = () => {
           
           <Paper elevation={3} style={{marginTop:'20px'}}>
                <div style={{display:'flex',padding:'20px 20px 0px 20px'}}>
-                  <Typography  variant="p" component="h5" style={{padding:'10px',height:'30px'}}>Software Engineer you may know</Typography>
+                  <Typography  variant="p" component="h5" style={{padding:'10px',height:'30px'}}>Students you may know</Typography>
                   <Button variant="outlined" onClick={handleClickOpen} color="primary" size="small" style={{marginLeft:'auto',height:'30px'}}>See all</Button>
                </div>
                <Grid container >
                  <Grid item lg={3} xs={6}  >
-                      <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network1.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                  <Grid item lg={3} xs={6}  >
-                 <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network2.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                  <Grid item lg={3} xs={6} >
-                 <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network3.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                  <Grid item lg={3} xs={6} >
-                 <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network4.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                </Grid>
           </Paper>
@@ -175,41 +180,37 @@ const Network = () => {
                    <DialogContent dividers>
                        <Grid container style={{width:'100%'}}>
                             <Grid lg={3} xs={6}>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
+                            {
+                               person.network1.map((row) => (
+                                 <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                               ))
+                            }
                             </Grid>
                             <Grid lg={3} xs={6}>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
+                            {
+                               person.network2.map((row) => (
+                                 <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                               ))
+                            }
                             </Grid>
                             <Grid lg={3} xs={6}>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
+                            {
+                               person.network3.map((row) => (
+                                 <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                               ))
+                            }
                             </Grid>
                             <Grid lg={3} xs={6}>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
-                              <NetworkCard/>
+                            {
+                               person.network4.map((row) => (
+                                 <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                               ))
+                            }
                             </Grid>
                        </Grid>
                    </DialogContent>
                    <DialogActions>
-                       <Button onClick={handleClosemore}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Save</Button>
+                       <Button onClick={handleClosemore}  style={{borderRadius:'20px'}} variant="contained" color="primary" autoFocus>Cancel</Button>
                    </DialogActions>
                </Dialog>
 
@@ -224,28 +225,34 @@ const Network = () => {
                </div>
                <Grid container >
                  <Grid item lg={3} xs={6}  >
-                      <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network1.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                  <Grid item lg={3} xs={6}  >
-                      <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network2.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                  <Grid item lg={3} xs={6} >
-                      <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network3.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                  <Grid item lg={3} xs={6} >
-                    <NetworkCard/>
-                      <NetworkCard/>
-                      <NetworkCard/>
+                 {
+                     person.network4.map((row) => (
+                       <NetworkCard name={row.username} work={row.work} img={row.img}/>
+                     ))
+                  }
                  </Grid>
                </Grid>
-
-
 
                <div style={{display:'flex',padding:'20px 20px 0px 20px'}}>
                   <Typography  variant="p" component="h5" style={{padding:'10px',height:'30px'}}>Hashtags to follow based on your activity</Typography>

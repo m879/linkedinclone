@@ -88,9 +88,10 @@ const Jobs= () => {
                   </Grid>
                </Grid>
            </Paper>
-
+           
        </div>
     );
 }
  
 export default Jobs;
+
